@@ -30,13 +30,13 @@
                             @endif
                     @endif
                     @if(auth()->user()->level === 2)
-                        <x-nav-link :href="route('all.students')" :active="request()->routeIs('all.students')">
+                        <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                             All students
                         </x-nav-link>
-                        <x-nav-link :href="route('all.teachers')" :active="request()->routeIs('all.teachers')">
+                        <x-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
                             All teachers
                         </x-nav-link>
-                        <x-nav-link :href="route('all.classrooms')" :active="request()->routeIs('all.classrooms')">
+                        <x-nav-link :href="route('classrooms.index')" :active="request()->routeIs('classrooms.index')">
                             All classrooms
                         </x-nav-link>
                     @endif
