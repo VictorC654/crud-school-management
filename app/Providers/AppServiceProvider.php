@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('access-classrooms', function ($user) {
-            return $user->level === 1 || $user->level === 2;
+            return $user->level === 1 ;
         });
         Gate::define('access-director', function ($user) {
             return $user->level === 2;
