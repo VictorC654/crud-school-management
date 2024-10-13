@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 
 class ClassroomController extends Controller
 {
+    
     public function index()
     {
         $teacher = User::find(auth()->user()->id);
@@ -21,10 +22,12 @@ class ClassroomController extends Controller
             'classrooms' => $teacher->classrooms
         ]);
     }
+
     public function create()
     {
         return view('teacherViews.create-classroom-view', []);
     }
+
     public function store(StoreClassroomRequest $request)
     {
         if(auth()->user()->level === 2)
@@ -41,6 +44,7 @@ class ClassroomController extends Controller
         }
         return redirect("/classrooms/" . $classroom->id);
     }
+
     public function show($id)
     {
         session(['classId' => $id]);
@@ -54,6 +58,7 @@ class ClassroomController extends Controller
             'students' => $students,
         ]);
     }
+
     public function update($studentId)
     {
         ClassroomStudent::create([
@@ -68,6 +73,7 @@ class ClassroomController extends Controller
         }
         return redirect()->back();
     }
+
     public function removeStudent($studentId)
     {
         $studentRecord = ClassroomStudent::where("user_id", "=", $studentId)->firstOrFail();
@@ -79,6 +85,7 @@ class ClassroomController extends Controller
 
         return redirect()->back();
     }
+
     public function showForStudent($id)
     {
         $classroom = Classroom::findOrFail($id);
@@ -91,6 +98,7 @@ class ClassroomController extends Controller
             'students' => $students,
         ]);
     }
+
     public function destroy(Classroom $classroom)
     {
         if (Gate::denies('access-director', $classroom)) {
@@ -102,8 +110,9 @@ class ClassroomController extends Controller
             $student->save();
         }
         $classroom->delete();
-        return redirect()->back();
+        return redirect()->to(route('all.classrooms'));
     }
+
     public function showAllClassrooms()
     {
         if (Gate::denies('access-director')) {
@@ -113,6 +122,7 @@ class ClassroomController extends Controller
             'classrooms' => Classroom::paginate(10),
         ]);
     }
+
     public function directorCreateClassroom()
     {
         if (Gate::denies('access-director')) {

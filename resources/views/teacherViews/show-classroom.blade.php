@@ -35,7 +35,7 @@
             <tr>
                 <td style="border: 1px solid #ddd; padding: 8px;"> {{ $student->name }}</td>
                 <td style="border: 1px solid #ddd; padding: 8px;">
-                    <form method="POST" action="/remove-student/{{ $student->id }}">
+                    <form method="POST" action="{{ route('student.remove', ['id' => $student->id]) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" style="padding:10px;color:white;border-radius:10px;" class="bg-red-500">

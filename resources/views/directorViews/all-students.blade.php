@@ -34,7 +34,7 @@
                             @endif
                         </td>
                         <td style="border: 1px solid #ddd; padding: 8px;display:Flex;">
-                            <form method="POST" action="{{ route('delete.user', ['id' => $student->id]) }}">
+                            <form method="POST" action="{{ route('delete.user', ['user' => $student->id]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" style="margin-right:10px;padding:10px;color:white;border-radius:10px;" class="bg-red-500">
@@ -42,7 +42,7 @@
                                 </button>
                             </form>
                             @if(!$student->isEnrolled)
-                            <form method="POST" action="{{ route('make.teacher', ['id' => $student->id]) }}">
+                            <form method="POST" action="{{ route('make.teacher', ['student' => $student->id]) }}">
                                 @csrf
                                 <button type="submit" style="background:green;padding:10px;color:white;border-radius:10px;" class="">
                                     Make teacher

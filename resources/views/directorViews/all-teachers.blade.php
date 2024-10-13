@@ -28,7 +28,7 @@
                             @endif
                         </td>
                         <td style="border: 1px solid #ddd; padding: 8px;">
-                            <form method="POST" action="{{ route('delete.user', ['id' => $teacher->id]) }}">
+                            <form method="POST" action="{{ route('delete.user', ['user' => $teacher->id]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" style="padding:10px;color:white;border-radius:10px;" class="bg-red-500">

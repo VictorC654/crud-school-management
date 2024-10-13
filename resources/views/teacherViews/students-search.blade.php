@@ -16,7 +16,7 @@
                             <div class="student-name">
                                 {{ $student->name }}
                             </div>
-                            <form action="/add-student/{{ $student->id }}" method="POST" class="add-student-form">
+                            <form action="{{ route('student.add', ['student' => $student->id ]) }}" method="POST" class="add-student-form">
                                 @csrf
                                 <button type="submit" class="add-button">
                                     Add

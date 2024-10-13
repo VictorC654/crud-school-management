@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
+
     public function search()
     {
         $users = User::where('isEnrolled', false)
@@ -18,6 +19,7 @@ class UserController extends Controller
             'students' => $users
         ]);
     }
+
     public function show()
     {
         if (Gate::denies('access-director')) {
@@ -27,6 +29,7 @@ class UserController extends Controller
             'students' => User::where("level", "=", 0)->paginate(10),
         ]);
     }
+
     public function showAllTeachers()
     {
         if (Gate::denies('access-director')) {
@@ -36,6 +39,7 @@ class UserController extends Controller
             'teachers' => User::where('level', '=', 1)->paginate(10),
         ]);
     }
+
     public function destroy($id)
     {
         if (Gate::denies('access-director')) {
@@ -44,6 +48,7 @@ class UserController extends Controller
         User::findOrFail($id)->delete();
         return redirect()->back();
     }
+
     public function makeTeacher($id)
     {
         if (Gate::denies('access-director')) {
